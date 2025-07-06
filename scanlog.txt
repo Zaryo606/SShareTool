@@ -1,0 +1,49 @@
+[1] ~ Physical machine detected
+     -> Manufacturer: LENOVO
+     -> Model: 10MNS0HM0S
+
+[2] ~ Recycle Bin info:
+      - Last modified: 06.07.2025 13:34
+      - Path: C:\$Recycle.Bin\S-1-5-21-2287342625-4261590243-544960711-1001
+      - Current user: DESKTOP-EPAB8G2\vojta
+
+[3] ~ Suspicious prefetch files:
+      - SCREENCLIPPINGHOST.EXE-A742536A.pf
+
+
+[4] ~ Process runtime:
+      - javaw.exe:     since 06.07.2025 06:43:09 (4h51m35s)
+      - explorer.exe:  since 06.07.2025 06:00:34 (5h34m10s)
+      - Result: javaw.exe started AFTER explorer.exe
+
+[5] ~ Detected 'pcaclient' strings in explorer.exe:
+      - ь)Э)ых{TRACE,0000,0000,PcaClient,MonitorProcess,C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe,Time,15
+        TRACE,0000,0000,PcaClient,MonitorProcess,C:\Program Files\Feather Launcher\Feather Launcher.exe,Time,0
+        TRACE,0000,0000,PcaClient,MonitorProcess,C:\Users\vojta\AppData\Local\Programs\Microsoft VS Code\Code.exe,Time,0
+        TRACE,0000,13440,PcaClient,Excluded,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,SFC protected
+        TRACE,0000,6724,PcaClient,Excluded,C:\WINDOWS\system32\NOTEPAD.EXE,SFC protected
+        TRACE,0000,10012,PcaClient,Excluded,C:\WINDOWS\system32\cmd.exe,SFC protected
+        TRACE,0000,6852,PcaClient,Excluded,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,SFC protected
+        TRACE,0000,0000,PcaClient,MonitorProcess,C:\Users\vojta\AppData\Local\Programs\Microsoft VS Code\Code.exe,Time,0
+        
+      - PcaClient
+
+
+[6] ~ No 'jnativehook' files found in %TEMP%
+
+[7] ~ Suspicious files found in 'Recent':
+      - script.lnk
+        Last modified: 05.07.2025 18:24:08
+
+
+[8] ~ Suspicious file/folder names found on C:\
+      - C:\Program Files\Go\src\cmd\go\testdata\script\cgo_trimpath_macro.txt
+      - C:\Users\vojta\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\cpp\syntaxes\cpp.embedded.macro.tmLanguage.json
+      - C:\Users\vojta\OneDrive\Desktop\Backup\Solutions\ZaryMacro
+      - C:\Users\vojta\OneDrive\Desktop\Backup\Solutions\ZaryMacro\ZaryMacro
+      - C:\Users\vojta\OneDrive\Desktop\Backup\Solutions\ZaryMacro\ZaryMacro\.idea\ZaryMacro.iml
+      - C:\Users\vojta\OneDrive\Desktop\script\jnativehook.go
+
+
+[9] ~ All critical system services are present and running
+
