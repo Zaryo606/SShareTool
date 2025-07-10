@@ -8,7 +8,7 @@ import (
 var (
 	logFile   *os.File
 	stepIndex = 1
-	stepTotal = 9
+	stepTotal = 12
 )
 
 func main() {
@@ -61,6 +61,18 @@ func main() {
 
 	step("Checking system services")
 	result = checkSystemServices()
+	log(result)
+
+	step("Checking Minecraft log ")
+	result = checkMinecraftLogs()
+	log(result)
+
+	step("Checking Minecraft versions")
+	result = checkMinecraftVersions()
+	log(result)
+
+	step("Scanning user mods")
+	result = checkModJars()
 	log(result)
 
 	fmt.Println("\n[~] Scan completed! → Output saved to scanlog.txt")

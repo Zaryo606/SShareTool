@@ -9,48 +9,40 @@ import (
 
 func checkSuspiciousNamesOnCDrive() string {
 	suspiciousWords := []string{"macro", "autoclick", "clicker", "injecter.exe", "jnativehook"}
-	excludedDirs := map[string]bool{
-		`C:\Windows`:                   true,
-		`C:\ProgramData`:               true,
-		`C:\$Recycle.Bin`:              true,
-		`C:\System Volume Information`: true,
-		`C:\Recovery`:                  true,
-		`C:\PerfLogs`:                  true,
-	}
-
 	var results []string
 
-	err := filepath.Walk(`C:\`, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
+	for letter := 'C'; letter <= 'Z'; letter++ {
+		drive := fmt.Sprintf("%c:\\", letter)
+		if _, err := os.Stat(drive); os.IsNotExist(err) {
+			continue
+		}
+
+		err := filepath.Walk(drive, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				return nil
+			}
+
+			name := strings.ToLower(info.Name())
+			for _, word := range suspiciousWords {
+				if strings.Contains(name, word) {
+					results = append(results, "      - "+path)
+					break
+				}
+			}
 			return nil
-		}
+		})
 
-		if info.IsDir() {
-			if excludedDirs[path] {
-				return filepath.SkipDir
-			}
+		if err != nil {
+			results = append(results, fmt.Sprintf("      - Error scanning %s: %v", drive, err))
 		}
-
-		name := strings.ToLower(info.Name())
-		for _, word := range suspiciousWords {
-			if strings.Contains(name, word) {
-				results = append(results, "      - "+path)
-				break
-			}
-		}
-		return nil
-	})
-
-	if err != nil {
-		return fmt.Sprintf("[8] ~ Error scanning C:\\ drive: %v", err)
 	}
 
 	if len(results) == 0 {
-		return "[8] ~ No suspicious file/folder names found on C:\\"
+		return "[8] ~ No suspicious file/folder names found on any drive"
 	}
 
 	var builder strings.Builder
-	builder.WriteString("[8] ~ Suspicious file/folder names found on C:\\\n")
+	builder.WriteString("[8] ~ Suspicious file/folder names found:\n")
 	for _, line := range results {
 		builder.WriteString(line + "\n")
 	}
